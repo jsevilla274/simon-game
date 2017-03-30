@@ -2,7 +2,71 @@
 <html>
 <head>
     <title>Simon Game</title>
+    <style type="text/css">
+        .main-button {
+            height: 250px;
+            width: 250px;
+            border: 3px solid black;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container div div {
+            display: flex;
+            text-align: center;
+        }
+
+        body {
+            margin: 0px;
+            font-size: 0px;
+            font-family: arial;
+        }
+
+        button {
+            width: 300px;
+        }
+
+        span {
+            font-size: 16px;
+        }
+
+        #green {
+            background-color: green;
+        }
+
+        #red {
+            background-color: red;
+        }
+
+        #yellow {
+            background-color: yellow;
+        }
+
+        #blue {
+            background-color: blue;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div>
+            <div>
+                <div class="main-button" id="green"></div>
+                <div class="main-button" id="red"></div>
+            </div>
+            <div>
+                <div class="main-button" id="yellow"></div>
+                <div class="main-button" id="blue"></div>
+            </div>
+            <div>
+                <button type="button">Start</button>
+                <input type="checkbox"><span>Strict</span>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
