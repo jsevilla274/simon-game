@@ -2,11 +2,17 @@
 <html>
 <head>
     <title>Simon Game</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        //fallback
+        window.jQuery || document.write('<script src="src/jquery-3.1.1.min.js"><\/script>');
+    </script>
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <style type="text/css">
         .main-button {
             height: 250px;
             width: 250px;
-            border: 3px solid black;
         }
 
         .container {
@@ -15,15 +21,101 @@
             justify-content: center;
         }
 
-        .container div div {
+        .circle {
+            border-radius: 50%;
+            border: 10px solid black;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #simon-logo {
+            width: 200px;
+            top: 65px;
+            left: 35px;
+        }
+
+        .button-container {
             display: flex;
             text-align: center;
         }
 
+        #turn-display {
+            font-size: 43px;
+            width: 70px;
+            height: 50px;
+            border-radius: 10px;
+            border: 3px solid white;
+            top: 140px;
+            left: 40px;
+        }
+
+        #strict, #strict-display, #start {
+            border-radius: 50%;
+        }
+
+        .strict-group > div, .start-group > div {
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 5px;
+        }
+
+        .start-group {
+            top: 155px;
+            left: 140px;
+        }
+
+        #start {
+            background-color: #13ff7c;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .strict-group {
+            top: 144px;
+            left: 190px;
+        }
+
+
+        #strict {
+            background-color: #1c8cff;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        #strict-display {
+            background-color: #00a74a;
+            width: 6px;
+            height: 6px;
+        }
+
+        .control-label {
+            font-size: 12px;
+        }
+
+        .control-panel {
+            font-family: Russo One;
+            color: white;
+            height: 270px;
+            width: 270px;
+            background-color: black;
+            position: absolute;
+            top: 120px;
+            left: 120px;
+            border-radius: 50%;
+            text-align: center;
+        }
+
+
+        .control-panel > * {
+            position: absolute;
+        }
+
         body {
-            margin: 0px;
-            font-size: 0px;
-            font-family: arial;
+            font-size: 0;
+            font-family: arial, sans-serif;
+            background-color: #EEEECC;
         }
 
         button {
@@ -37,40 +129,62 @@
         #green {
             background-color: #00a74a;
             /*in play #13ff7c*/
+            border-right: 5px solid black;
+            border-bottom: 5px solid black;
         }
 
         #red {
             background-color: #9f0f17;
             /*in play #ff4c4c*/
+            border-left: 5px solid black;
+            border-bottom: 5px solid black;
         }
 
         #yellow {
             background-color: #cca707;
             /*in play #fed93f*/
+            border-right: 5px solid black;
+            border-top: 5px solid black;
         }
 
         #blue {
             background-color: #094a8f;
             /*in play #1c8cff*/
+            border-left: 5px solid black;
+            border-top: 5px solid black;
         }
     </style>
+    <script src="src/simon.js"></script>
 </head>
 <body>
     <div class="container">
-        <div>
-            <div>
+        <div class="circle">
+            <div class="button-container">
                 <div class="main-button" id="green"></div>
                 <div class="main-button" id="red"></div>
             </div>
-            <div>
+            <div class="button-container">
                 <div class="main-button" id="yellow"></div>
                 <div class="main-button" id="blue"></div>
             </div>
-            <div>
-                <button type="button">Start</button>
-                <input type="checkbox"><span>Strict</span>
+            <div class="control-panel">
+                <img src="assets/logo.png" id="simon-logo">
+                <div id="turn-display"></div>
+                <div class="start-group">
+                    <div id="start"></div>
+                    <div class="control-label">START</div>
+                </div>
+                <div class="strict-group">
+                    <div id="strict-display"></div>
+                    <div id="strict"></div>
+                    <div class="control-label">STRICT</div>
+                </div>
             </div>
         </div>
     </div>
+    <audio src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" id="gsound" preload></audio>
+    <audio src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3" id="rsound" preload></audio>
+    <audio src="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3" id="ysound" preload></audio>
+    <audio src="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3" id="bsound" preload></audio>
 </body>
 </html>
